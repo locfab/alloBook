@@ -90,12 +90,12 @@ class FriendsController extends Controller
     public function update(Request $request, $id, $status)
     {
         $friendship = Friendship::findOrFail($id);
-        if($friendship->id == $friendship->recipient_id)
+        if(Auth::user()->id == $friendship->sender_id)
             $user = User::findOrFail($friendship->recipient_id);
         else
             $user = User::findOrFail($friendship->sender_id);
 
-        if($status == \Hootlex\Friendships\Status::DENIED)
+        if($status == \Hootlex\Friendships\Status::BLOCKED)
         {
             Auth::user()->blockFriend($user);
         }

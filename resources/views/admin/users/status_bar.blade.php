@@ -4,8 +4,8 @@
             {{ Form::submit('Unfriend', ['class' => 'btn btn-warning btn-xs']) }}
             {{ Form::close() }}
 
-            {{ Form::open(['route' => ['admin.friends.update', Auth::user()->getFriendShip($user), \Hootlex\Friendships\Status::DENIED], 'method' => 'put']) }}
-            {{ Form::submit('Deny Friend', ['class' => 'btn btn-danger btn-xs']) }}
+            {{ Form::open(['route' => ['admin.friends.update', Auth::user()->getFriendShip($user), \Hootlex\Friendships\Status::BLOCKED], 'method' => 'put']) }}
+            {{ Form::submit('Block Friend', ['class' => 'btn btn-danger btn-xs']) }}
             {{ Form::close() }}
         @elseif(Auth::user()->hasFriendRequestFrom($user))
             {{ Form::open(['route' => ['admin.friends.update', Auth::user()->getFriendShip($user), \Hootlex\Friendships\Status::ACCEPTED], 'method' => 'put']) }}
