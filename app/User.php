@@ -31,5 +31,8 @@ class User extends Authenticatable
     public function reviews(){
         return $this->hasMany('App\Review');
     }
+    public function marks(){
+        return $this->hasMany('App\Mark');
+    }
     use Friendable;
 }

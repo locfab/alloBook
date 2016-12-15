@@ -1,7 +1,7 @@
 {{ "Mark:" }}
 <p class="well">
-    @if($review->mark>0)
-        {{ $review->mark }}
+    @if($mark->mark>0)
+        {{ $mark->mark }}
     @else
         {{ "No mark..." }}
     @endif

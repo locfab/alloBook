@@ -37,19 +37,30 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function (){
         Route::get('friends/{friends}', 'FriendsController@create')->name('admin.friends.create');
     Route::resource('reviews', 'ReviewsController');
     Route::resource('users', 'UsersController');
+    Route::resource('marks', 'MarksController');
 });
 
 Route::get('bookuser/remove/{books}', function($id){
     Auth::user()->books()->detach([$id]);
     $review = Auth::user()->reviews->where('book_id',(int)$id)->first()->delete();
+    $review = Auth::user()->marks->where('book_id',(int)$id)->where('user_id', Auth::user()->id)->first()->delete();
     return redirect()->route('admin.books.show', $id);
 })->name('remove');
 
 Route::get('bookuser/add/{books}', function ($id){
     Auth::user()->books()->attach([$id]);
     $review = new \App\Review();
+    $mark = new \App\Mark();
+
     $review->user_id = Auth::user()->id;
     $review->book_id = $id;
+
+    $mark->user_id = Auth::user()->id;
+    $mark->book_id = $id;
+
     $review->save();
+    $mark->save();
     return redirect()->route('admin.books.show', $id);
 })->name('add');
+
+

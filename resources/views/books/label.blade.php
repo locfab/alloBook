@@ -14,8 +14,8 @@
                 @if(Auth::user()->books()->find($book->id))
                     <a class="btn btn-primary" href="{{ route('admin.books.show', $book->id) }}" role="button">Show</a>
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    @if(Auth::user()->reviews->where('book_id', (int)$book->id)->first()->mark > 0)
-                        @for($i = 0; $i < Auth::user()->reviews->where('book_id', (int)$book->id)->first()->mark; $i++)
+                    @if(Auth::user()->marks->where('book_id',(int)$book->id)->first()->mark > 0)
+                        @for($i = 0; $i < Auth::user()->marks->where('user_id', Auth::user()->id)->where('book_id',(int)$book->id)->first()->mark; $i++)
                             {{'*'}}
                         @endfor
                     @endif

@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Mark;
 use App\Book;
 use App\Review;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
-class ReviewsController extends Controller
+class MarksController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -67,9 +63,10 @@ class ReviewsController extends Controller
      */
     public function edit($id)
     {
-        $review = Review::findOrFail((int)$id);
-        $book = Book::findOrFail($review->book_id);
-        return view('admin.reviews.edit', compact('review', 'book'));
+        $mark = Mark::findOrFail($id);
+        $book = Book::findOrFail($mark->book_id);
+        $options = [0 => 'default', 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5'];
+        return view('admin.marks.edit', compact('mark', 'options', 'book'));
     }
 
     /**
@@ -82,19 +79,19 @@ class ReviewsController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(),[
-            'comment' => 'required|min:6'
+            'mark' => 'required'
         ]);
-        $review = Review::findOrFail($id);
-        $book = Book::findOrFail($review->book_id);
+        $mark = Mark::findOrFail($id);
+        $book = Book::findOrFail($mark->book_id);
         if($validator->fails())
         {
-            return redirect(route('admin.reviews.edit', $book->id))->withErrors($validator->errors());
+            return redirect(route('admin.marks.edit', $book->id))->withErrors($validator->errors());
         }
         else
         {
-            $review->comment = $request->get('comment');
-            $review->save();
-            return redirect(route('admin.books.show', $book->id))->with('message', 'Avis Modifié');
+            $mark->mark = (int)$request->get('mark');
+            $mark->save();
+            return redirect(route('admin.books.show', $book->id))->with('message', 'Note Modifiée');
         }
     }
 

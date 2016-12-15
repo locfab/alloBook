@@ -5,7 +5,7 @@
     {!! Form::open(['method' => 'posts', 'url' => action('BooksController@store')]) !!}
 
     @include('errors')
-    <div class="col-lg-6">
+    <div class="col-lg-5">
           <div class="form-group"> 
             <label for="title">Title</label> 
             <input type="text" class="form-control" id='title' name='title' placeholder="Title">
@@ -27,8 +27,8 @@
         </div>
 
             <div class="form-group"> 
-            <div class="col-md-6 col-md-offset-4"> 
-                <button type="submit" class="btn btn-default">Add Book</button>
+            <div class="col-md-6"> 
+                <button type="submit" class="btn btn-primary">Add Book</button>
             </div> 
         </div>  
     </div>

@@ -5,6 +5,4 @@
 
 <p>{{ $book->synopsis }}</p>
 
-@if($book->urlImage)
-    <img src={{ $book->urlImage }} height="400" alt="Logo" style="padding:20px;float:right;">
-@endif
+
