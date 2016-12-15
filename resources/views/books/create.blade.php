@@ -13,9 +13,8 @@
 
         <div class="form-group">
             {!! Form::label('author_id', 'Author') !!}
-            {!! Form::select('author_id', $authors, null, ['class'=>'form-control']) !!}
+            {!! Form::select('author_id', $authors, null, ['class'=>'form-control', 'data-live-search' => 'true' ]) !!}
         </div>
-
 
           <div class="form-group"> 
             <label for="synopsis">Synopsis</label> 
