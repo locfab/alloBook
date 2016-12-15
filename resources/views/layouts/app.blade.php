@@ -59,6 +59,12 @@
                         <li><a href="{{ route('books.create') }}">Add Book</a></li>
                         <li><a href="{{ route('users.index') }}">Users</a></li>
                     @endif
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
