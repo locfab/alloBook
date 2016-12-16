@@ -1,21 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(\Illuminate\Support\Facades\Auth::check())
-        <MARQUEE scrollamount="8">
-            @foreach($books as $book)
-                <a href="{{route('admin.books.show', $book->id)}}">
-                    <IMG src="{{ $book->urlImage }}" height="600vh" behavior="alternate">
-                </a>
-            @endforeach
-        </MARQUEE>
-    @else
-        <MARQUEE scrollamount="8">
-            @foreach($books as $book)
-                <a href="{{route('books.show', $book->id)}}">
-                    <IMG src="{{ $book->urlImage }}" height="600vh" behavior="alternate">
-                </a>
-            @endforeach
-        </MARQUEE>
-    @endif
+
+    @foreach($books as $book)
+        <div class="col-md-10">
+            <h2>{{ ucwords($book->title) }}</h2>
+                @if($book->urlImage)
+                    <img src={{ $book->urlImage }} height="100" alt="Logo">
+                @endif
+                @if($book->author)
+                    <p> {{ucwords($book->author->name)}} </p>
+                @endif
+        </div>
+    @endforeach
+
 @endsection

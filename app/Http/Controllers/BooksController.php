@@ -122,4 +122,15 @@ class BooksController extends Controller
     {
         //
     }
+    public static function listMoyBook(){
+        $books = Book::get();
+        $moyennes = array();
+        foreach($books as $book){
+            $moyenne = $book->moyBookMark($book->id);
+            if($moyenne > 0 && $moyenne<=5)
+                $moyennes[] = (object)['note' => $moyenne, 'book_id' => $book->id];
+        }
+        arsort($moyennes);
+        return $moyennes;
+    }
 }

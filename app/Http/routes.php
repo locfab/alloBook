@@ -12,13 +12,11 @@
 */
 
 Route::get('/', function () {
-    $booksTemps = App\Book::get();
-    foreach($booksTemps as $booksTemp)
-    {
-        if($booksTemp->urlImage)
-            $books[] = $booksTemp;
+    $moyBooks = \App\Http\Controllers\BooksController::listMoyBook();
+    $books = array();
+    foreach($moyBooks as $moyBook){
+        $books[] = App\Book::findOrFail($moyBook->book_id);
     }
-    shuffle($books);
     return view('welcome', compact('books'));
 });
 
@@ -62,5 +60,6 @@ Route::get('bookuser/add/{books}', function ($id){
     $mark->save();
     return redirect()->route('admin.books.show', $id);
 })->name('add');
+
 
 
