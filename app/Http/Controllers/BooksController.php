@@ -133,4 +133,15 @@ class BooksController extends Controller
         arsort($moyennes);
         return $moyennes;
     }
+    public static function listDateBook(){
+        $books = Book::get();
+        $dates = array();
+        foreach($books as $book){
+            $publish = $book->publish;
+            if($publish)
+                $dates[] = (object)['publish' => $publish, 'book_id' => $book->id];
+        }
+        arsort($dates);
+        return $dates;
+    }
 }

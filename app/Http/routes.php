@@ -13,11 +13,16 @@
 
 Route::get('/', function () {
     $moyBooks = \App\Http\Controllers\BooksController::listMoyBook();
-    $books = array();
+    $dateBooks = \App\Http\Controllers\BooksController::listDateBook();
+    $booksMoys = array();
+    $booksdates = array();
     foreach($moyBooks as $moyBook){
-        $books[] = App\Book::findOrFail($moyBook->book_id);
+        $booksMoys[] = App\Book::findOrFail($moyBook->book_id);
     }
-    return view('welcome', compact('books'));
+    foreach($dateBooks as $dateBook){
+        $booksdates[] = App\Book::findOrFail($dateBook->book_id);
+    }
+    return view('welcome', compact('booksMoys', 'booksdates'));
 });
 
 Route::auth();
@@ -60,6 +65,7 @@ Route::get('bookuser/add/{books}', function ($id){
     $mark->save();
     return redirect()->route('admin.books.show', $id);
 })->name('add');
+
 
 
 
