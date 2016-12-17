@@ -5,8 +5,10 @@
     @foreach($users as $user)
         @if(Auth::user() != $user)
             <p>
-                <strong><a href="{{ route('admin.users.show', $user->id) }}">{{ ucwords($user->name) }}</a></strong>
-                <span class="label label-info btn-md">{{ Auth::user()->getNameFriendship($user) }}</span>
+                <h2>
+                    <a href="{{ route('admin.users.show', $user->id) }}">{{ ucwords($user->name) }}</a>
+                    <small><span class="label label-info btn-md">{{ Auth::user()->getNameFriendship($user) }}</span></small>
+                </h2>
             </p>
             @include('admin.users.status_bar')
         @endif
