@@ -4,7 +4,7 @@
     <h1> Welcome on Allo Book</h1>
         <div class="container">
             <div class="row">
-                <div class="col-md-4 col-md-offset-1">
+                <div class="col-md-5 col-md-offset-1">
                     <h2> Top 5 rated </h2>
                     @foreach($booksMoys as $booksMoy)
                         <div class="col-md-12">
@@ -26,29 +26,29 @@
                                                 {{ '(No mark)' }}
                                             @endif
                                         </small>
-                                    </h2>
+                                    </h3>
                                     @if($booksMoy->urlImage)
-                                        <img src={{ $booksMoy->urlImage }} height="75" width="55" alt="Logo">
+                                        <img src={{ $booksMoy->urlImage }} height="100" width="70" alt="Logo">
                                     @endif
 
                                     @if($booksMoy->author)
                                             <p class="text-capitalize" style="font-size:14px;"> {{$booksMoy->author->name}} </p>
                                     @endif
-                                </div>
+                        </div>
                     @endforeach
                 </div>
-                <div class="col-md-4 col-md-offset-2">
+                <div class="col-md-5 col-md-offset-1">
                     <h2> 5 More recent </h2>
                     @foreach($booksdates as $booksDate)
                         <div class="col-md-12">
                             @if(\Illuminate\Support\Facades\Auth::check())
                                 <a href="{{route('admin.books.show', $booksDate->id)}}">
-                                    @else
-                                        <a href="{{route('books.show', $booksDate->id)}}">
-                                            @endif
-                                            <h3 class="text-capitalize" style="font-size:18px;">
-                                            {{ $booksDate->title }}
-                                        </a>
+                            @else
+                                <a href="{{route('books.show', $booksDate->id)}}">
+                            @endif
+                                    <h3 class="text-capitalize" style="font-size:18px;">
+                                        {{ $booksDate->title }}
+                                </a>
                                         <small>
                                             @if($booksDate->moyBookMark($booksDate->id) != 0)
                                                 @for($i=0; $i<round((float)$booksDate->moyBookMark($booksDate->id)); $i++)
@@ -59,14 +59,14 @@
                                                 {{ '(No mark)' }}
                                             @endif
                                         </small>
-                                        </h3>
-                                        @if($booksDate->urlImage)
-                                            <img src={{ $booksDate->urlImage }} height="75" width="55" alt="Logo">
-                                        @endif
+                                    </h3>
+                                    @if($booksDate->urlImage)
+                                        <img src={{ $booksDate->urlImage }} height="100" width="70" alt="Logo">
+                                    @endif
 
-                                        @if($booksDate->author)
-                                            <p class="text-capitalize" style="font-size:14px;"> {{$booksDate->author->name}} </p>
-                            @endif
+                                    @if($booksDate->author)
+                                        <p class="text-capitalize" style="font-size:14px;"> {{$booksDate->author->name}} </p>
+                                    @endif
                         </div>
                     @endforeach
                 </div>
