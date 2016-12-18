@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-md-offset-1">
-                    <h2> Top rated </h2>
+                    <h2> Top 5 rated </h2>
                     @foreach($booksMoys as $booksMoy)
                         <div class="col-md-12">
                             @if(\Illuminate\Support\Facades\Auth::check())
@@ -38,7 +38,7 @@
                     @endforeach
                 </div>
                 <div class="col-md-4 col-md-offset-2">
-                    <h2> More recent </h2>
+                    <h2> 5 More recent </h2>
                     @foreach($booksdates as $booksDate)
                         <div class="col-md-12">
                             @if(\Illuminate\Support\Facades\Auth::check())

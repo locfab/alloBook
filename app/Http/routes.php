@@ -22,6 +22,8 @@ Route::get('/', function () {
     foreach($dateBooks as $dateBook){
         $booksdates[] = App\Book::findOrFail($dateBook->book_id);
     }
+    $booksMoys = array_slice($booksMoys, 0, 5);
+    $booksdates = array_slice($booksdates, 0, 5);
     return view('welcome', compact('booksMoys', 'booksdates'));
 });
 
