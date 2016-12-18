@@ -50,9 +50,12 @@
             <div class="col">
                 <div class="row-md-8">
                     @if($book->author)
-                        <p class="text-capitalize"> {{$book->author->name}} </p>
+                        <p class="text-capitalize"> title : {{$book->author->name}} </p>
                     @endif
-                    <p>{{ substr($book->synopsis,0,200) }}...</p>
+                    @if($book->category->category)
+                        <p class="text-capitalize"> category : {{$book->category->category}} </p>
+                    @endif
+                        Synopsis : <p> {{ substr($book->synopsis,0,130) }}...</p>
                 </div>
                 <div class="row-md-4">
                     @if(Auth::check())

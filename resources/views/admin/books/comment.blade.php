@@ -1,4 +1,3 @@
-{{ "Comment:" }}
 <p class="well">
     @if($review->comment)
         {{ $review->comment }}

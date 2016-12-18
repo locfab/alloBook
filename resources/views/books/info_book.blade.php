@@ -1,8 +1,10 @@
-<h2>{{ ucwords($book->title) }}</h2>
+<h2 class="text-capitalize"> {{ $book->title }}</h2>
 @if($book->author)
-    <p><em> {{ucwords($book->author->name)}} </em></p>
+    <p class="text-capitalize">author : {{$book->author->name}}</p>
 @endif
-
-<p>{{ $book->synopsis }}</p>
+@if($book->category->category)
+    <p class="text-capitalize"> category : {{$book->category->category}} </p>
+@endif
+Synopsis : <p>{{ $book->synopsis }}</p>
 
 

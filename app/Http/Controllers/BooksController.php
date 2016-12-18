@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -37,8 +38,9 @@ class BooksController extends Controller
      */
     public function create()
     {
-        $authors = author::lists('name', 'id');
-        return view('books.create', compact('authors'));
+        $authors = Author::lists('name', 'id');
+        $categories = Category::lists('category', 'id');
+        return view('books.create', compact('authors', 'categories'));
     }
 
     /**
@@ -51,6 +53,8 @@ class BooksController extends Controller
     {
         $validation = Validator::make($request->all(), [
             'title' => 'required',
+            'author_id' => 'required',
+            'category_id' => 'required',
             'synopsis'  => 'required|min:6',
             'urlImage' => 'URL'
         ]);
@@ -64,6 +68,7 @@ class BooksController extends Controller
             $book->title = mb_strtolower($request->get('title'));
             $book->synopsis = $request->get('synopsis');
             $book->author_id = $request->get('author_id');
+            $book->category_id = $request->get('category_id');
             $book->urlImage = $request->get('urlImage');
             $book->save();
             if(Auth::check())

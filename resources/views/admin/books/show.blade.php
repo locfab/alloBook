@@ -1,28 +1,48 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-lg-5">
-        @include('succes_message')
-        @include('books.info_book')
-        @include('admin.books.add_rem_button')
-        <p>
-            @foreach(Auth::user()->marks->where('user_id', Auth::user()->id)->where('book_id',(int)$book->id) as $mark)
-                @include('admin.books.mark')
-                <a class="btn btn-primary" href="{{ route('admin.marks.edit', $mark->id) }}" role="button">Edit</a>
-            @endforeach
-        </p>
-        <p>
-            @foreach((Auth::user()->reviews->where('book_id',$book->id)) as $review)
-                @include('admin.books.comment')
-                <a class="btn btn-primary" href="{{ route('admin.reviews.edit', $review->id) }}" role="button">Edit</a>
-            @endforeach
-        </p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                            @include('succes_message')
+                            @include('books.info_book')
+                            @include('admin.books.add_rem_button')
+                            {{ "Mark:" }}
+                            <div class="row">
+                                @foreach(Auth::user()->marks->where('user_id', Auth::user()->id)->where('book_id',(int)$book->id) as $mark)
+                                    <p>
+                                        <div class="col-md-9">
+                                            @include('admin.books.mark')
+                                        </div>
+                                        <div class="col-md-3">
+                                            <a class="btn btn-primary" href="{{ route('admin.marks.edit', $mark->id) }}" role="button">Edit</a>
+                                        </div>
+                                    </p>
+                                @endforeach
+                            </div>
+                            {{ "Comment:" }}
+                            <div class="row">
+                                @foreach((Auth::user()->reviews->where('book_id',$book->id)) as $review)
+                                <p>
+                                    <div class="col-md-9">
+                                        @include('admin.books.comment')
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a class="btn btn-primary" href="{{ route('admin.reviews.edit', $review->id) }}" role="button">Edit</a>
+                                    </div>
+                                </p>
+                                @endforeach
+                            </div>
+                    </div>
+                    <div class="col-md-7">
+                        @if($book->urlImage)
+                            <img src={{ $book->urlImage }} height="600" alt="Logo" style="padding:20px;float:right;">
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="col-lg-5">
-        @if($book->urlImage)
-            <img src={{ $book->urlImage }} height="650" alt="Logo" style="padding:20px;float:right;">
-        @endif
-    </div>
-
 @endsection
