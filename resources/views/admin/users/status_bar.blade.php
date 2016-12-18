@@ -36,7 +36,7 @@
         </div>
         @elseif($user->hasFriendRequestFrom(Auth::user()))
             {{ Form::open(['route' => ['admin.friends.destroy', Auth::user()->getFriendShip($user)->id], 'method' => 'delete']) }}
-                {{ Form::submit('Unfriend', ['class' => 'btn btn-warning btn-xs']) }}
+                {{ Form::submit('Unrequest', ['class' => 'btn btn-warning btn-xs']) }}
             {{ Form::close() }}
         @elseif($user->hasBlocked(Auth::user()))
         @elseif(Auth::user()->hasBlocked($user))
