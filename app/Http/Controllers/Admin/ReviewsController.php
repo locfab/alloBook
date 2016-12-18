@@ -88,7 +88,7 @@ class ReviewsController extends Controller
         $book = Book::findOrFail($review->book_id);
         if($validator->fails())
         {
-            return redirect(route('admin.reviews.edit', $book->id))->withErrors($validator->errors());
+            return redirect(route('admin.books.show', $book->id))->withInput($request->all())->withErrors($validator->errors());
         }
         else
         {

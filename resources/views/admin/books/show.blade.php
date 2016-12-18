@@ -7,9 +7,12 @@
                 <div class="row">
                     <div class="col-md-5">
                             @include('succes_message')
+                            @include('errors')
                             @include('books.info_book')
                             @include('admin.books.add_rem_button')
-                            {{ "Mark:" }}
+                            @if(Auth::user()->marks->where('user_id', Auth::user()->id)->where('book_id',(int)$book->id)->first())
+                                {{ "Mark:" }}
+                            @endif
                             <div class="row">
                                 @foreach(Auth::user()->marks->where('user_id', Auth::user()->id)->where('book_id',(int)$book->id) as $mark)
                                     <p>
@@ -22,7 +25,9 @@
                                     </p>
                                 @endforeach
                             </div>
-                            {{ "Comment:" }}
+                            @if(Auth::user()->marks->where('user_id', Auth::user()->id)->where('book_id',(int)$book->id)->first())
+                                {{ "Comment:" }}
+                            @endif
                             <div class="row">
                                 @foreach((Auth::user()->reviews->where('book_id',$book->id)) as $review)
                                 <p>

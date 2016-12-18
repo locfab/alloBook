@@ -60,7 +60,7 @@ class BooksController extends Controller
         ]);
         if($validation->fails())
         {
-            return redirect()->route('books.create')->withErrors($validation->errors())->with('message', 'New Book!!!');
+            return redirect()->route('books.create')->withInput($request->all())->withErrors($validation->errors())->with('message', 'New Book!!!');
         }
         else
         {
