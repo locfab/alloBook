@@ -1,5 +1,7 @@
 @extends('app')
-
+@section('title')
+	{{ "Reser"." - " }}
+@endsection
 @section('content')
 <div class="container-fluid">
 	<div class="row">

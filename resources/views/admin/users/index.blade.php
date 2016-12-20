@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    {{ "Users"." - " }}
+@endsection
 @section('content')
     <div class="container">
         <div class="row">
@@ -10,7 +12,7 @@
                         @if(Auth::user() != $user)
                             <p>
                                 <h2>
-                                    <a href="{{ route('admin.users.show', $user->id) }}">{{ ucwords($user->name) }}</a>
+                                    <a href="{{ route('admin.users.show', $user->id) }}" class="text-capitalize">{{ $user->name }}</a>
                                     <small><span class="label label-info btn-md">{{ Auth::user()->getNameFriendship($user) }}</span></small>
                                 </h2>
                             </p>

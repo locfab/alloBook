@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    {{ "My Relations"." - " }}
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">

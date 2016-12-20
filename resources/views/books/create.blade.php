@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    {{ "Create new book"." - " }}
+@endsection
 @section('content')
     <div class="container">
         <div class="row">

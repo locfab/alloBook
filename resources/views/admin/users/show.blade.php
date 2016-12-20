@@ -1,10 +1,12 @@
 @extends('layouts.app')
-
+@section('title')
+    {{ ucwords($user->name)." - " }}
+@endsection
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>{{ ucwords($user->name) }} books <small><span class="label label-info btn-md">{{ Auth::user()->getNameFriendship($user) }}</span></small></h1>
+                <h1 class="text-capitalize">{{ $user->name }} books <small><span class="label label-info btn-md">{{ Auth::user()->getNameFriendship($user) }}</span></small></h1>
                 @include('admin.users.status_bar')
                 <div class="container">
                     <div class="row">

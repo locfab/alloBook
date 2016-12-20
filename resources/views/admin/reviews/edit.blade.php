@@ -1,11 +1,13 @@
 @extends('layouts.app')
-
+@section('title')
+    {{ "Edit comment - ".ucwords($book->title)." - " }}
+@endsection
 @section('content')
     <div class="col-lg-4">
         <h1>Change my rate</h1>
-        <h2>{{ ucwords($book->title) }}</h2>
+        <h2 class="text-capitalize">{{ $book->title }}</h2>
         @if($book->author)
-            <p><em> {{ucwords($book->author->name)}} </em></p>
+            <p class="text-capitalize"> {{$book->author->name}} </p>
         @endif
 
     {!! Form::open(['method' => 'put', 'url' => action('Admin\ReviewsController@update', $review)]) !!}

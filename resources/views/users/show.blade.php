@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    {{ ucwords($user->name)." - " }}
+@endsection
 @section('content')
     <div class="container">
         <div class="row">
