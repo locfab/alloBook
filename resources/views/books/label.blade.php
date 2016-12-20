@@ -35,9 +35,12 @@
         border-style:solid;
         border-color:black;
     }*/
+    .userMark
+    {
+        color: blue;
+    }
 
 </style>
-
 <div class="col-md-6">
     <h2 class="text-capitalize">{{ $book->title }}</h2>
     <div class="row">
@@ -55,14 +58,14 @@
                     @if($book->category->category)
                         <p class="text-capitalize"> category : {{$book->category->category}} </p>
                     @endif
-                        Synopsis : <p> {{ substr($book->synopsis,0,130) }}...</p>
+                        Synopsis : <p> {{ substr($book->synopsis,0,99) }}...</p>
                 </div>
                 <div class="row-md-4">
                     @if(Auth::check())
                         @if(Auth::user()->books()->find($book->id))
                             <a class="btn btn-primary" href="{{ route('admin.books.show', $book->id) }}" role="button">Show</a>
                             <i class="fa fa-check"></i>
-                                @if(Auth::user()->marks->where('book_id',(int)$book->id)->first()->mark > 0)
+                            @if(Auth::user()->marks->where('book_id',(int)$book->id)->first()->mark > 0)
                                 @for($i = 0; $i < Auth::user()->marks->where('user_id', Auth::user()->id)->where('book_id',(int)$book->id)->first()->mark; $i++)
                                     {{'*'}}
                                 @endfor
@@ -73,6 +76,16 @@
                     @else
                         <a class="btn btn-primary" href="{{ route('books.show', $book->id) }}" role="button">Show</a>
                     @endif
+                    <div class="userMark">
+                        @if(isset($user))
+                            @if($user->marks->where('book_id',(int)$book->id)->first()->mark > 0)
+                                {{ ucwords($user->name)." : " }}
+                                @for($i = 0; $i < $user->marks->where('user_id', $user->id)->where('book_id',(int)$book->id)->first()->mark; $i++)
+                                    {{'*'}}
+                                @endfor
+                            @endif
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
