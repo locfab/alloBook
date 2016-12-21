@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
 
+
+    <link rel="shortcut icon" type="image/x-icon" href="http://blindlibrary.utah.gov/images/logoBook.gif">
+
     <style>
         body {
             font-family: 'Lato';
