@@ -24,11 +24,14 @@
                             <div class="form-group">
                                 {!! Form::label('author_id', 'Author') !!}
                                 {!! Form::select('author_id', $authors, null, ['class'=>'form-control', 'data-live-search' => 'true' ]) !!}
+                                <a href="{{route('authors.create')}}"> <button type="button" class="btn btn-primary btn-xs">Add author</button> </a>
                             </div>
+
                             <div class="form-group">
                                 {!! Form::label('category_id', 'Category') !!}
                                 {!! Form::select('category_id', $categories, null, ['class'=>'form-control', 'data-live-search' => 'true' ]) !!}
                             </div>
+
                               <div class="form-group{{ $errors->has('synopsis') ? ' has-error' : '' }}"> 
                                 <label for="synopsis">Synopsis</label> 
                                 <textarea class="form-control" id='synopsis' name='synopsis' value="{{ old('synopsis') }}" placeholder="synopsis"></textarea>

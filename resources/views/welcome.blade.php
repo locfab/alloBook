@@ -10,6 +10,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
+                            @include('succes_message')
                             <div class="col-md-5 col-md-offset-2">
                                 <h2> Top 5 rated </h2>
                                 @foreach($booksMoys as $booksMoy)

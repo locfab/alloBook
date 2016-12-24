@@ -25,13 +25,14 @@ Route::get('/', function () {
     $booksMoys = array_slice($booksMoys, 0, 5);
     $booksdates = array_slice($booksdates, 0, 5);
     return view('welcome', compact('booksMoys', 'booksdates'));
-});
+})->name('welcome');
 
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
 Route::resource('books', 'BooksController');
+Route::resource('authors', 'AuthorsController');
 
 Route::resource('users', 'UsersController');
 
