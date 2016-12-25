@@ -42,6 +42,16 @@
                                 @endif
                             </div>
 
+                            <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}"> <!-- Date input -->
+                                <label class="control-label" for="date">Date</label>
+                                <input class="form-control" id="date" name="date" value="{{ old('date') }}" placeholder="YYYY/MM/DD" type="text"/>
+                                @if ($errors->has('date'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('date') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
                             <div class="form-group{{ $errors->has('urlImage') ? ' has-error' : '' }}"> 
                                 <label for="urlImage">Url Picture</label> 
                                 <input class="form-control" id='urlImage' name='urlImage' value="{{ old('urlImage') }}" placeholder="http://..."></input>

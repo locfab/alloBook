@@ -56,7 +56,9 @@ class BooksController extends Controller
             'author_id' => 'required',
             'category_id' => 'required',
             'synopsis'  => 'required|min:6',
+            'date'      => 'required|date|date_format:Y-m-d',
             'urlImage' => 'URL'
+
         ]);
         if($validation->fails())
         {
@@ -69,6 +71,7 @@ class BooksController extends Controller
             $book->synopsis = $request->get('synopsis');
             $book->author_id = $request->get('author_id');
             $book->category_id = $request->get('category_id');
+            $book->publish = $request->get('date');
             $book->urlImage = $request->get('urlImage');
             $book->save();
             if(Auth::check())

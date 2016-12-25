@@ -40,8 +40,9 @@ class AuthorsController extends Controller
     public function store(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'name' => 'required',
-            'resume'  => 'required|min:6',
+            'name'      => 'required',
+            'resume'    => 'required|min:6',
+            'date'      => 'required|date|date_format:Y-m-d',
         ]);
         if($validation->fails())
         {
@@ -52,6 +53,7 @@ class AuthorsController extends Controller
             $author = new author;
             $author->name = mb_strtolower($request->get('name'));
             $author->resume = $request->get('resume');
+            $author->birth = $request->get('date');
             $author->save();
             if(Auth::check())
                 return redirect()->route('books.create')->with('message', 'New Author!!!');

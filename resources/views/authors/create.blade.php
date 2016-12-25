@@ -24,11 +24,21 @@
                         </div>
 
                           <div class="form-group{{ $errors->has('resume') ? ' has-error' : '' }}"> 
-                            <label for="Resume">Synopsis</label> 
-                            <textarea class="form-control" id='resume' name='resume' value="{{ old('resume') }}" placeholder="Resume"></textarea>
+                            <label for="Resume">Resume</label> 
+                            <textarea class="form-control" id='resume' name='resume' placeholder="Resume">{{ old('resume') }} </textarea>
                             @if ($errors->has('resume'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('resume') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}"> <!-- Date input -->
+                            <label class="control-label" for="date">Date</label>
+                            <input class="form-control" id="date" name="date" value="{{ old('date') }}" placeholder="YYYY/MM/DD" type="text"/>
+                            @if ($errors->has('date'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('date') }}</strong>
                                 </span>
                             @endif
                         </div>
