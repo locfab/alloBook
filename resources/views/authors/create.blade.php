@@ -43,6 +43,16 @@
                             @endif
                         </div>
 
+                        <div class="form-group{{ $errors->has('urlImage') ? ' has-error' : '' }}"> 
+                            <label for="urlImage">Url Picture</label> 
+                            <input class="form-control" id='urlImage' name='urlImage' value="{{ old('urlImage') }}" placeholder="http://..."></input>
+                            @if ($errors->has('urlImage'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('urlImage') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+
                             <div class="form-group"> 
                             <div class="col-md-6"> 
                                 <button type="submit" class="btn btn-primary">Add author</button>

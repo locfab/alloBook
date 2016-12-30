@@ -53,7 +53,7 @@
             <div class="col">
                 <div class="row-md-8">
                     @if($book->author)
-                        <p class="text-capitalize"> title : {{$book->author->name}} </p>
+                         <p class="text-capitalize"> Author:  <a href="{{route("authors.show", $book->author->id)}}"> {{$book->author->name}} </a></p>
                     @endif
                     @if($book->category->category)
                         <p class="text-capitalize"> category : {{$book->category->category}} </p>

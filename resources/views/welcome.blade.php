@@ -38,7 +38,7 @@
                                             @endif
 
                                             @if($booksMoy->author)
-                                                    <p class="text-capitalize" style="font-size:14px;"> {{$booksMoy->author->name}} </p>
+                                                    <a href="{{route('authors.show', $booksMoy->author->id)}}"><p class="text-capitalize" style="font-size:14px;"> {{$booksMoy->author->name}} </p></a>
                                             @endif
                                 @endforeach
                             </div>
@@ -70,7 +70,7 @@
                                                 @endif
 
                                                 @if($booksDate->author)
-                                                    <p class="text-capitalize" style="font-size:14px;"> {{$booksDate->author->name}} </p>
+                                                   <a href="{{route('authors.show', $booksDate->author->id)}}"> <p class="text-capitalize" style="font-size:14px;"> {{$booksDate->author->name}} </p> </a>
                                                 @endif
                                 @endforeach
                             </div>

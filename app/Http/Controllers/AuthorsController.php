@@ -43,6 +43,7 @@ class AuthorsController extends Controller
             'name'      => 'required',
             'resume'    => 'required|min:6',
             'date'      => 'required|date|date_format:Y-m-d',
+            'urlImage' => 'required|URL',
         ]);
         if($validation->fails())
         {
@@ -54,6 +55,7 @@ class AuthorsController extends Controller
             $author->name = mb_strtolower($request->get('name'));
             $author->resume = $request->get('resume');
             $author->birth = $request->get('date');
+            $author->urlImage = $request->get('urlImage');
             $author->save();
             if(Auth::check())
                 return redirect()->route('books.create')->with('message', 'New Author!!!');
@@ -70,7 +72,10 @@ class AuthorsController extends Controller
      */
     public function show($id)
     {
-        //
+        $author = author::findOrFail($id);
+        $books = $author->books;
+        $books = $books->sortBy('title');
+        return view('authors.show', compact('author', 'books'));
     }
 
     /**

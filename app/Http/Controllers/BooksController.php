@@ -39,7 +39,15 @@ class BooksController extends Controller
     public function create()
     {
         $authors = Author::lists('name', 'id');
+        foreach($authors as $key => $author){
+            $authors[$key] = ucwords($authors[$key]);
+        }
         $categories = Category::lists('category', 'id');
+
+        foreach($categories as $key => $categorie){
+            $categories[$key] = ucwords($categories[$key]);
+        }
+
         return view('books.create', compact('authors', 'categories'));
     }
 
@@ -57,7 +65,7 @@ class BooksController extends Controller
             'category_id' => 'required',
             'synopsis'  => 'required|min:6',
             'date'      => 'required|date|date_format:Y-m-d',
-            'urlImage' => 'URL'
+            'urlImage' => 'required|URL'
 
         ]);
         if($validation->fails())
