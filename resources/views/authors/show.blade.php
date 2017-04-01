@@ -11,28 +11,7 @@
                         @include('succes_message')
                         @include('authors.info_author')
                         @foreach($books as $book)
-                            <a href="{{route('books.show', $book->id)}}">
-                                <h3 class="text-capitalize" style="font-size:18px;">
-                                {{ $book->title }}
-                            </a>
-                            <small>
-                                @if($book->moyBookMark($book->id) != 0)
-                                    @for($i=0; $i<round((float)$book->moyBookMark($book->id)); $i++)
-                                        {{'*'}}
-                                    @endfor
-                                    {{'('.$book->moyBookMark($book->id).')'}}
-                                @else
-                                    {{ '(No mark)' }}
-                                @endif
-                            </small>
-                            </h3>
-                            @if($book->urlImage)
-                                <img src={{ $book->urlImage }} height="100" width="70" alt="Logo">
-                            @endif
-
-                            @if($book->author)
-                                <a href="{{route('authors.show', $book->author->id)}}"><p class="text-capitalize" style="font-size:14px;"> {{$book->author->name}} </p></a>
-                            @endif
+                            @include('label_welcome')
                         @endforeach
                     </div>
                     <div class="col-md-7">
